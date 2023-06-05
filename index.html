@@ -49,6 +49,14 @@
   </style>
 </head>
 
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "777527bc72244d7d859c6c5e9c1a1861"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
 <body>
   <main>
     <form>
@@ -100,8 +108,82 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
-    // Start your code here
-    // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click', () => {
+      console.log("Console Log Demo");
+    });
+    errorBtns[1].addEventListener('click', () => {
+      console.error("Console Error Demo");
+    });
+    errorBtns[2].addEventListener('click', () => {
+      console.count();
+    });
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("Console Warn Demo");
+    });
+    errorBtns[4].addEventListener('click', () => {
+      let num = 1;
+      let assertMsg = "The number is not equal to 2";
+      console.assert(num == 2, assertMsg);
+    });
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(errorBtns[6]);
+    });
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(errorBtns[7]);
+    });
+    errorBtns[8].addEventListener('click', () => {
+      console.group();
+    });
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+    errorBtns[10].addEventListener('click', () => {
+      console.table(["apple","strawberry","banana"]);
+    });
+    errorBtns[11].addEventListener('click', () => {
+      console.time();
+    });
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd();
+    });
+    errorBtns[13].addEventListener('click', first);
+    function first() {
+      second();
+    }
+    function second() {
+      third();
+    }
+    function third() {
+      console.trace();
+    }
+
+    class customErr extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "customErr";
+      }
+    }
+    errorBtns[14].addEventListener('click', () => {
+      try {
+        let DNE = document.getElementById("does-not-exist");
+        if (!DNE) {
+          TrackJS.track("JavaScript Error Logging using TrackJS");
+          throw new customErr("element with id 'does-not-exist' was not found");
+        }
+      } catch (error) {
+        if (error instanceof customErr) {
+          console.error(`custom error: ${error.message}`);
+        } else {
+          console.error(`error: ${error.message}`);
+        }
+      } finally {
+          console.log("error thrown, see error message for more details");
+      }
+    });
+
   </script>
 </body>
 
