@@ -7,7 +7,6 @@
       // for more configuration options, see https://docs.trackjs.com
     });
   </script>
-  <script>TrackJS.track('Testing TrackJS!');</script>
                           
 <head>
   <meta charset="UTF-8">
@@ -174,6 +173,7 @@
         }
       } catch (error) {
         if (error instanceof customErr) {
+          TrackJS.track('Testing TrackJS!');
           console.error(`custom error: ${error.message}`);
         } else {
           console.error(`error: ${error.message}`);
