@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "777527bc72244d7d859c6c5e9c1a1861"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+  <script>TrackJS.track('Testing TrackJS!');</script>
+                          
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,13 +55,6 @@
       width: 122px;
     }
   </style>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-  <script>
-    window.TrackJS && TrackJS.install({ 
-      token: "777527bc72244d7d859c6c5e9c1a1861"
-      // for more configuration options, see https://docs.trackjs.com
-    });
-  </script>
 </head>
                         
 <body>
@@ -169,7 +170,6 @@
       try {
         let DNE = document.getElementById("does-not-exist");
         if (!DNE) {
-          TrackJS.track("JavaScript Error Logging using TrackJS");
           throw new customErr("element with id 'does-not-exist' was not found");
         }
       } catch (error) {
@@ -182,7 +182,6 @@
           console.log("error thrown, see error message for more details");
       }
     });
-
   </script>
 </body>
 
